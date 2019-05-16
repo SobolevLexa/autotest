@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace Test1
 {
     internal static class Test1
@@ -12,16 +13,24 @@ namespace Test1
                 double.TryParse(Console.ReadLine(), out double radius);
 
                 Assert(radius > 0, $"Radius should be more 0. Current value - {radius}");
+                
+                var circle = new Circle(radius);
+                    
 
-                Console.WriteLine("Circle square - {0:F}", CircleSquare(radius));
+                Console.WriteLine("Circle square - {0:F}", circle);
 
                 Console.WriteLine("Please enter side length");
                 double.TryParse(Console.ReadLine(), out double sideLength);
-
-
+                
                 Assert(sideLength > 0, $"Side length should be more 0. Current value - {sideLength}");
 
-                Console.WriteLine("Square square - {0:F}", SquareSquare(sideLength));
+                var square = new Square(sideLength);
+
+                Console.WriteLine("Square square - {0:F}", square);
+                
+                
+                Console.WriteLine($"Square contains circle is {square.Contains(circle)}");
+                Console.WriteLine($"Circle contains square is {circle.Contains(square)}");
             }
             catch (Exception exc)
             {
@@ -36,16 +45,6 @@ namespace Test1
             {
                 throw new Exception(message);
             }
-        }
-
-        private static double CircleSquare(double radius)
-        {
-            return Math.PI * radius * radius;
-        }
-
-        private static double SquareSquare(double sideLength)
-        {
-            return sideLength * sideLength;
         }
     }
 }
